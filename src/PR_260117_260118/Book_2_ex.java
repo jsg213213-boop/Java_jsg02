@@ -22,7 +22,7 @@ class Book {
 
 public class Book_2_ex {
     public static void main(String[] args) {
-        // Book 객체 생성 및 사용
+
         Book book1 = new Book("장마", 15000, "윤흥길");
         Book book2 = new Book("청춘의덫", 12000, "김수현");
         Book book3 = new Book("펜트하우스", 13000, "김순옥");
