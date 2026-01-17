@@ -1,20 +1,18 @@
 package PR_260117_260118;
 
 class Car {
-    // 1. 필드(속성) 선언
     String modelName;
     int modelYear;
     String category;
 
-    // 2. 생성자 추가 (객체를 만들 때 값을 받아 저장함)
     public Car(String modelName, int modelYear, String category) {
         this.modelName = modelName;
         this.modelYear = modelYear;
         this.category = category;
     }
 
-    // 3. 정보 출력 메서드
     public void introduceCar() {
+        System.out.println("--- 현대자동차 모델 소개 ---");
         System.out.println("모델명 : " + modelName);
         System.out.println("연식   : " + modelYear + "년형");
         System.out.println("차종   : " + category);
@@ -22,8 +20,8 @@ class Car {
     }
 }
 
-class _1_Hyundai_car {
-    public static void main(String[] args) {
+public class _1_HyundaiCar {
+    public static void main(String[] Args) {
 
         Car car01 = new Car("스타리아", 2026, "승합차");
         Car car02 = new Car("코나", 2026, "소형 SUV");
@@ -54,5 +52,3 @@ class _1_Hyundai_car {
         car13.introduceCar();
     }
 }
-
-
