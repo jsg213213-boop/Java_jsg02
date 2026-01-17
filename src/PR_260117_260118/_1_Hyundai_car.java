@@ -21,7 +21,7 @@ class Car {
 }
 
 public class _1_Hyundai_car {
-    static void main() {
+    public static void main(String[] args) {
 
         Car car01 = new Car("스타리아", 2026, "승합차");
         Car car02 = new Car("코나", 2026, "소형 SUV");
