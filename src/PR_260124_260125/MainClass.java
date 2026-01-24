@@ -57,7 +57,7 @@ abstract class MemberBase {
         }
     }
 
-    public class MainClass {
+    public static class MainClass01 {
         public static void main(String[] args) {
             MemberBase[] members = new MemberBase[5];
             int count = 0;
