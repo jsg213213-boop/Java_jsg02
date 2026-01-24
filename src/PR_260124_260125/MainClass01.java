@@ -117,3 +117,4 @@ abstract class MemberBase {
         }
     }
 }
+
