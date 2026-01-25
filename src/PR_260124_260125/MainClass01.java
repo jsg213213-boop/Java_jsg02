@@ -39,6 +39,23 @@ abstract class MemberBase {
         return age; // age 필드 반환 (타입이 String일 경우)
     }
 
+    public void setPassword(String s) {
+        this.password = s;
+    }
+
+    public void setName(String s) {
+        this.name = s;
+
+    }
+
+    public void setAge(int i) {
+        this.age = i;
+    }
+
+    public void setEmail(String s) {
+        this.email = s; // 매개변수 s를 클래스 변수 email에 저장
+    }
+
     static class NormalMember extends MemberBase implements Joinable {
 
 
