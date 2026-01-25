@@ -2,15 +2,16 @@ package PR_260124_260125;
 
 import java.util.Scanner;
 
+// 1. 인터페이스 정의
 interface Joinable {
     void join();
-
 }
 
+// 2. 부모 추상 클래스
 abstract class MemberBase {
     protected String name;
     protected String email;
-    protected String password; // 비밀번호 필드
+    protected String password;
     protected int age;
 
     public MemberBase(String name, String email, String password, int age) {
@@ -22,42 +23,29 @@ abstract class MemberBase {
 
     public abstract void showInfo();
 
+    // Getter & Setter (매개변수 불일치 에러 해결 버전)
+    public String getName() { return name; }
+    public void setName(String s) { this.name = s; }
+    public void setEmail(String s) { this.email = s; }
+    public void setPassword(String s) { this.password = s; }
+    public void setAge(int i) { this.age = i; }
 
     public String getEmail() {
         return email;
     }
 
+    // 비밀번호 반환 (String 타입으로 변경)
     public String getPassword() {
         return password;
     }
 
-    public String getName() {
-        return name; // name 필드 반환
-    }
-
+    // 나이 반환 (int 타입으로 변경)
     public int getAge() {
-        return age; // age 필드 반환 (타입이 String일 경우)
+        return age;
     }
 
-    public void setPassword(String s) {
-        this.password = s;
-    }
-
-    public void setName(String s) {
-        this.name = s;
-
-    }
-
-    public void setAge(int i) {
-        this.age = i;
-    }
-
-    public void setEmail(String s) {
-        this.email = s; // 매개변수 s를 클래스 변수 email에 저장
-    }
-
-    static class NormalMember extends MemberBase implements Joinable {
-
+    // 요청하신 public static 내부 클래스 방식
+    public static class NormalMember extends MemberBase implements Joinable {
 
         public NormalMember(String name, String email, String password, int age) {
             super(name, email, password, age);
@@ -72,65 +60,45 @@ abstract class MemberBase {
         public void showInfo() {
             System.out.println("[이름: " + name + " | 이메일: " + email + " | 나이: " + age + "]");
         }
-    }
+    } // NormalMember 끝
+} // MemberBase 끝
 
-    public static class MainClass01 {
-        public static void main(String[] args) {
-            MemberBase[] members = new MemberBase[5];
-            int count = 0;
-            Scanner sc = new Scanner(System.in);
+// 3. 실행 클래스 (파일 이름은 반드시 MainClass01.java 여야 합니다)
+public class MainClass01 {
+    public static void main(String[] args) {
+        // static 내부 클래스이므로 MemberBase.NormalMember 형태로 호출하거나 직접 사용 가능
+        MemberBase[] members = new MemberBase[5];
+        int count = 0;
+        Scanner sc = new Scanner(System.in);
 
-            while (true) {
-                System.out.println("\n============= 회원 관리 시스템 ver 1.1 =============");
-                System.out.println("1. 회원가입  2. 목록조회  3. 종료");
-                System.out.print("메뉴 선택 >> ");
+        while (true) {
+            System.out.println("\n============= 회원 관리 시스템 ver 1.1 =============");
+            System.out.println("1. 회원가입  2. 목록조회  3. 종료");
+            System.out.print("메뉴 선택 >> ");
 
-                int choice;
-                try {
-                    choice = Integer.parseInt(sc.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("⚠️ 숫자만 입력해주세요.");
+            int choice = Integer.parseInt(sc.nextLine());
+
+            if (choice == 1) {
+                if (count >= members.length) {
+                    System.out.println("❌ 정원초과!");
                     continue;
                 }
+                System.out.print("이름: "); String name = sc.nextLine();
+                System.out.print("이메일: "); String email = sc.nextLine();
+                System.out.print("비밀번호: "); String pw = sc.nextLine();
+                System.out.print("나이: "); int age = Integer.parseInt(sc.nextLine());
 
-                switch (choice) {
-                    case 1: // 회원 가입
-                        if (count >= members.length) {
-                            System.out.println("❌ 정원초과입니다.");
-                            break;
-                        }
-                        System.out.print("이름: ");
-                        String name = sc.nextLine();
-                        System.out.print("이메일: ");
-                        String email = sc.nextLine();
-                        System.out.print("비밀번호: ");
-                        String password = sc.nextLine(); // 입력받는 변수명 확인
-                        System.out.print("나이: ");
-                        int age = Integer.parseInt(sc.nextLine());
+                // 내부 클래스 객체 생성
+                MemberBase.NormalMember newMember = new MemberBase.NormalMember(name, email, pw, age);
+                members[count++] = newMember;
+                newMember.join();
 
-                        NormalMember newMember = new NormalMember(name, email, password, age);
-                        members[count] = newMember;
-                        newMember.join();
-                        count++;
-                        break;
-
-                    case 2:
-                        System.out.println("\n--- 전체 회원 목록 ---");
-                        if (count == 0) System.out.println("가입된 회원이 없습니다.");
-                        for (int i = 0; i < count; i++) {
-                            members[i].showInfo();
-                        }
-                        break;
-
-                    case 3:
-                        System.out.println("프로그램을 종료합니다.");
-                        sc.close();
-                        return;
-
-                    default:
-                        System.out.println("번호를 다시 확인해주세요.");
-                }
+            } else if (choice == 2) {
+                for (int i = 0; i < count; i++) members[i].showInfo();
+            } else if (choice == 3) {
+                break;
             }
         }
+        sc.close();
     }
 }

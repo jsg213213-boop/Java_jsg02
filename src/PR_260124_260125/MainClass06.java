@@ -82,7 +82,7 @@ public class MainClass06 {
                     String pwd = data[2].trim();
                     int age = Integer.parseInt(data[3].trim());
 
-                    members.add(new NormalMember(name, email, pwd, age));
+                    members.add(new MemberBase.NormalMember(name, email, pwd, age));
                 }
             }
             System.out.println("파일 불러오기 완료: " + members.size() + "명의 정보 로드.");
@@ -115,8 +115,8 @@ class MemberBase03 {
     }
 }
 
-class NormalMember extends MemberBase {
-    public NormalMember(String name, String email, String password, int age) {
+class NormalMember05 extends MemberBase {
+    public NormalMember05(String name, String email, String password, int age) {
         super(name, email, password, age);
     }
 

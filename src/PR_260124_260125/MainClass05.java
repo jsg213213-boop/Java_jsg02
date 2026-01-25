@@ -192,7 +192,7 @@ public class MainClass05 {
                     String email = data[1];
                     String password = data[2];
                     int age = Integer.parseInt(data[3]);
-                    members[loadCount] = new MemberBase.NormalMember(name,email,password,age);
+                    members[loadCount] = new MemberBase.NormalMember(name, email, password, age);
                     loadCount++;
 
                 }

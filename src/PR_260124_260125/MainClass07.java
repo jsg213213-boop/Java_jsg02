@@ -49,7 +49,7 @@ public class MainClass07 {
                     if (members.containsKey(email)) {
                         System.out.println("이미 존재하는 이메일입니다.");
                     } else {
-                        NormalMember newMember = new NormalMember(name, email, password, age);
+                        MemberBase.NormalMember newMember = new MemberBase.NormalMember(name, email, password, age);
                         members.put(email, newMember); // Map에 추가
                         newMember.join();
                         saveMembers(members); // 저장
@@ -127,7 +127,7 @@ public class MainClass07 {
                     String email = data[1];
                     String password = data[2];
                     int age = Integer.parseInt(data[3]);
-                    members.put(email, new NormalMember(name, email, password, age));
+                    members.put(email, new MemberBase.NormalMember(name, email, password, age));
                 }
             }
             System.out.println("파일 로드 완료: " + members.size() + "명");

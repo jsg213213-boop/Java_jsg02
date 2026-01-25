@@ -38,7 +38,7 @@ public class MainClass04 {
 
                     System.out.println("나이: ");
                     int age = Integer.parseInt(sc.nextLine());
-                    MemberBase.NormalMember newMember = new MemberBase.NormalMember(name,email, password, age);
+                    MemberBase.NormalMember newMember = new MemberBase.NormalMember(name, email, password, age);
                     members[count] = newMember;
                     newMember.join();
                     count++;

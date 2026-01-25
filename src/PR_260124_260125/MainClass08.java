@@ -47,7 +47,7 @@ public class MainClass08 {
                         System.out.print("나이: ");
                         int age = Integer.parseInt(sc.nextLine());
 
-                        NormalMember newMember = new NormalMember(name, email, password, age);
+                        MemberBase.NormalMember newMember = new MemberBase.NormalMember(name, email, password, age);
                         members[count++] = newMember;
                         newMember.join();
 
@@ -134,7 +134,7 @@ public class MainClass08 {
             while ((line = br.readLine()) != null && loadCount < members.length) {
                 String[] data = line.split(",");
                 if (data.length == 4) {
-                    members[loadCount++] = new NormalMember(data[0], data[1], data[2], Integer.parseInt(data[3]));
+                    members[loadCount++] = new MemberBase.NormalMember(data[0], data[1], data[2], Integer.parseInt(data[3]));
                 }
             }
             System.out.println("📂 데이터를 불러왔습니다. (로드된 회원: " + loadCount + "명)");
